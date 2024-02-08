@@ -19,8 +19,9 @@ type WeatherData = {
 };
 
 function App() {
-  const [city, setCity] = useState<string>("London");
+  const [city, setCity] = useState<string>("Dubai");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const roundedTemp: number = Math.round(weatherData?.main.temp ?? 0); // If you try to use data from your API call directly without checking if it's there, your code can get "upset"
 
   const fetchData = async () => {
     try {
@@ -41,7 +42,7 @@ function App() {
     <>
       <div>
         <h2>{weatherData?.name}</h2>
-        <p>Temperature: {weatherData?.main.temp}°C</p>
+        <p>Temperature: {roundedTemp} °C</p>
         <p>Description: {weatherData?.weather[0].description}</p>
         <p>Feels like: {weatherData?.main.feels_like}°C</p>
         <p>Humidity: {weatherData?.main.humidity}%</p>
