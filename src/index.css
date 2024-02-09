@@ -2,17 +2,64 @@
   font-family: "Nunito", sans-serif;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #03fca5;
+}
+
 .container {
-  margin: auto;
-  font-size: 24px;
-  margin-top: 3rem;
-  text-align: center;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 40px;
-  width: 35%;
+  position: relative;
+  width: 400px;
+  height: 105px;
+  background: #fff;
+  padding: 28px 32px;
+  overflow: hidden;
+  border-radius: 18px;
+  transition: 0.6s ease-out;
 }
 
 .weather-img {
   width: 100px;
+}
+
+.search-box {
+  width: 100%;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-box input {
+  width: 80%;
+  font-size: 24px;
+  text-transform: uppercase;
+  padding-left: 32px;
+}
+
+.search-box input::placeholder {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.search-box button {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  color: #03fca5;
+  background: #000;
+  border-radius: 50%;
+  font-size: 16px;
+  transition: 0.4s ease;
 }

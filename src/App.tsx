@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { FaMagnifyingGlass, FaLocationDot } from "react-icons/fa6";
 
 type WeatherData = {
   name: string;
@@ -45,6 +46,15 @@ function App() {
   return (
     <>
       <div className="container">
+        <div className="search-box">
+          <i className="fa-solid fa-location-dot">
+            <FaLocationDot />
+          </i>
+          <input type="text" placeholder="Enter your location" />
+          <button className="fa-solid fa-magnifying-glass">
+            <FaMagnifyingGlass />
+          </button>
+        </div>
         <h2>{weatherData?.name}</h2>
         <div>
           <p>Temperature: {roundedTemp} °C</p>
