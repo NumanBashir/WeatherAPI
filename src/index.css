@@ -21,7 +21,7 @@ body {
 .container {
   position: relative;
   width: 400px;
-  height: 105px;
+  height: 605px;
   background: #fff;
   padding: 28px 32px;
   overflow: hidden;
@@ -57,9 +57,23 @@ body {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  color: #03fca5;
-  background: #000;
+  color: #01be7c;
+  background: #fff;
   border-radius: 50%;
   font-size: 16px;
   transition: 0.4s ease;
+}
+
+.search-box button:hover {
+  background: #000;
+}
+
+.search-box i {
+  position: absolute;
+  color: #000;
+  font-size: 28px;
+}
+
+.weather-box {
+  text-align: center;
 }

@@ -55,14 +55,16 @@ function App() {
             <FaMagnifyingGlass />
           </button>
         </div>
-        <h2>{weatherData?.name}</h2>
-        <div>
-          <p>Temperature: {roundedTemp} °C</p>
-          <p>Description: {weatherData?.weather[0].description}</p>
-          <p>Feels like: {weatherData?.main.feels_like}°C</p>
-          <p>Humidity: {weatherData?.main.humidity}%</p>
-          <p>Wind Speed: {weatherData?.wind.speed}m/s</p>
-          <img className="weather-img" src={iconUrl} />
+        <div className="weather-box">
+          <h2>{weatherData?.name}</h2>
+          <div>
+            <p>Temperature: {roundedTemp} °C</p>
+            <p>Description: {weatherData?.weather[0].description}</p>
+            <p>Feels like: {weatherData?.main.feels_like}°C</p>
+            <p>Humidity: {weatherData?.main.humidity}%</p>
+            <p>Wind Speed: {weatherData?.wind.speed}m/s</p>
+            <img className="weather-img" src={iconUrl} />
+          </div>
         </div>
       </div>
     </>
