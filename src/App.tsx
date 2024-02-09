@@ -12,6 +12,7 @@ type WeatherData = {
   };
   weather: Array<{
     description: string;
+    icon: string;
   }>;
   wind: {
     speed: number;
@@ -19,9 +20,12 @@ type WeatherData = {
 };
 
 function App() {
-  const [city, setCity] = useState<string>("Dubai");
+  const [city, setCity] = useState<string>("Rio");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const roundedTemp: number = Math.round(weatherData?.main.temp ?? 0); // If you try to use data from your API call directly without checking if it's there, your code can get "upset"
+
+  const iconCode = weatherData?.weather[0].icon;
+  const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
   const fetchData = async () => {
     try {
@@ -48,6 +52,7 @@ function App() {
           <p>Feels like: {weatherData?.main.feels_like}°C</p>
           <p>Humidity: {weatherData?.main.humidity}%</p>
           <p>Wind Speed: {weatherData?.wind.speed}m/s</p>
+          <img className="weather-img" src={iconUrl} />
         </div>
       </div>
     </>
