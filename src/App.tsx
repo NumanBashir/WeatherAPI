@@ -21,7 +21,8 @@ type WeatherData = {
 };
 
 function App() {
-  const [city, setCity] = useState<string>("Rio");
+  const [city, setCity] = useState<string>("Mexico");
+  const [search, setSearch] = useState<string>("");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const roundedTemp: number = Math.round(weatherData?.main.temp ?? 0); // If you try to use data from your API call directly without checking if it's there, your code can get "upset"
 
@@ -30,6 +31,7 @@ function App() {
 
   const fetchData = async () => {
     try {
+      if (!city) return;
       const response = await axios.get<WeatherData>(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=167e45ba44d9662755d1a25effac5f34`
       );
@@ -43,6 +45,14 @@ function App() {
     fetchData();
   }, [city]);
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    setCity(search);
+  };
+
   return (
     <>
       <div className="container">
@@ -50,8 +60,13 @@ function App() {
           <i className="fa-solid fa-location-dot">
             <FaLocationDot />
           </i>
-          <input type="text" placeholder="Enter your location" />
-          <button className="fa-solid fa-magnifying-glass">
+          <input
+            type="text"
+            placeholder="Enter your location"
+            value={search}
+            onChange={handleSearchChange}
+          />
+          <button onClick={handleSearchSubmit}>
             <FaMagnifyingGlass />
           </button>
         </div>
