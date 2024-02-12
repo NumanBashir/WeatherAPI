@@ -29,16 +29,25 @@ function App() {
   const iconCode = weatherData?.weather[0].icon;
   const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
+  // Trigger button on Enter key press
+  var inputTest = document.getElementById("myInput");
+  inputTest?.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("myBtn")?.click();
+    }
+  });
+
   const fetchData = async () => {
     try {
       if (!city) return;
       const response = await axios.get<WeatherData>(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=167e45ba44d9662755d1a25effac5f34`
       );
-      console.log(response);
       setWeatherData(response.data);
     } catch (error) {
       console.error(error);
+      alert("Invalid City");
     }
   };
 
@@ -62,12 +71,14 @@ function App() {
             <FaLocationDot />
           </i>
           <input
+            id="myInput"
             type="text"
             placeholder="Enter your location"
             value={search}
             onChange={handleSearchChange}
+            autoFocus
           />
-          <button onClick={handleSearchSubmit}>
+          <button id="myBtn" onClick={handleSearchSubmit}>
             <FaMagnifyingGlass />
           </button>
         </div>
