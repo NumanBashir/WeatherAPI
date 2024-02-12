@@ -35,6 +35,7 @@ function App() {
       const response = await axios.get<WeatherData>(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=167e45ba44d9662755d1a25effac5f34`
       );
+      console.log(response);
       setWeatherData(response.data);
     } catch (error) {
       console.error(error);
@@ -71,14 +72,18 @@ function App() {
           </button>
         </div>
         <div className="weather-box">
-          <h2>{weatherData?.name}</h2>
-          <div>
-            <p>Temperature: {roundedTemp} °C</p>
-            <p>Description: {weatherData?.weather[0].description}</p>
-            <p>Feels like: {weatherData?.main.feels_like}°C</p>
-            <p>Humidity: {weatherData?.main.humidity}%</p>
-            <p>Wind Speed: {weatherData?.wind.speed}m/s</p>
-            <img className="weather-img" src={iconUrl} />
+          <h2 className="weather-location">{weatherData?.name}</h2>
+          <p>Temperature: {roundedTemp} °C</p>
+          <img className="weather-img" src={iconUrl} />
+          <div className="row">
+            <div className="column">
+              <p>Description: {weatherData?.weather[0].description}</p>
+              <p>Feels like: {weatherData?.main.feels_like}°C</p>
+            </div>
+            <div className="column">
+              <p>Humidity: {weatherData?.main.humidity}%</p>
+              <p>Wind Speed: {weatherData?.wind.speed}m/s</p>
+            </div>
           </div>
         </div>
       </div>
@@ -88,5 +93,4 @@ function App() {
 
 export default App;
 
-// TODO: Search input field
 // TODO: CSS Styling and components
